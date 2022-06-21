@@ -5,7 +5,7 @@ function App() {
   const [shortUrl, setShortUrl] = useState<string>('');
 
   const handleSubmit = async (): Promise<void> => {
-    const response = await fetch('https://j-short.herokuapp.com/create', {
+    const response = await fetch('https://jshort.herokuapp.com/create', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
