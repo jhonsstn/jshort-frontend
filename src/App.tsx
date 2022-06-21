@@ -5,14 +5,17 @@ function App() {
   const [shortUrl, setShortUrl] = useState<string>('');
 
   const handleSubmit = async (): Promise<void> => {
-    const response = await fetch('https://jshort.herokuapp.com/create', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ longUrl }),
-    });
+    const response = await fetch(
+      'https://jshort-backend.herokuapp.com/create',
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ longUrl }),
+      }
+    );
     const data = await response.json();
 
     setShortUrl(data[0].shortUrl);
@@ -24,10 +27,7 @@ function App() {
         <h1 className="flex justify-center text-3xl font-bold mb-6">JShort</h1>
       </header>
       <main>
-        <form
-          className="flex w-auto justify-center mb-6"
-          onSubmit={handleSubmit}
-        >
+        <form className="flex w-auto justify-center mb-6">
           <label className="flex justify-center ml" htmlFor="longUrl">
             URL:
             <input
@@ -39,7 +39,7 @@ function App() {
               onChange={({ target }) => setLongUrl(target.value)}
             />
           </label>
-          <button className="bg-slate-400" type="submit">
+          <button className="bg-slate-400" type="button" onClick={handleSubmit}>
             Encurtar
           </button>
         </form>
